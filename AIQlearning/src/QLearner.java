@@ -48,7 +48,11 @@ public class QLearner {
             int nextBestAction = getBestAction(Q[nextState]);
 
             // Update Q
-            Q[s][a] = rewards[s][a] + gamma * Q[nextState][nextBestAction];
+            if (nextBestAction >= 0) {
+                Q[s][a] = rewards[s][a] + gamma * Q[nextState][nextBestAction];
+            } else {
+                Q[s][a] = rewards[s][a] + gamma * 0;
+            }
         }
     }
 
